@@ -52,7 +52,7 @@ function App() {
             )}
 
             <div className="md:px-10 pb-4 pt-1 space-y-1">
-               <div className="w-full px-6 py-2.5 rounded flex items-center space-x-8 border border-gray-200  shadow-sm hover:bg-gray-100">
+               <div className="w-full px-6 py-2.5 rounded flex items-center space-x-8 border border-gray-200  shadow-sm sticky top-1 bg-white">
                   <span className="text-sm">Index</span>
                   <div className="flex-1">
                      <span className="text-sm">Filename</span>
@@ -63,6 +63,10 @@ function App() {
                      <span>Delete</span>
                   </div>
                </div>
+
+               {files.length == 0 && (
+                  <p className="text-center py-5 text-gray-500 text-base">Nothing to share with you.</p>
+               )}
 
                {files.map((file, index) => {
                   return <FileList name={file.name} type={file.type} file={file.file} index={index} key={index} />;

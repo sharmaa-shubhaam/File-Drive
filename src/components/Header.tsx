@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
 import { TbLogout } from "react-icons/tb";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { endSession, hasSession } from "../redux/sessionReducer";
 
 function Header() {
-   async function signOut() {}
+   const sessionMail = useAppSelector(hasSession).auth.email;
+   const dispatch = useAppDispatch();
+
+   async function signOut() {
+      dispatch(endSession());
+   }
 
    return (
       <header className="h-[70px] flex items-center justify-between px-10 py-2 z-50 bg-white border-b">
@@ -18,7 +25,7 @@ function Header() {
                   alt=""
                   className="w-7 h-7 p-0.5 rounded-full object-cover"
                />
-               <span className="text-sm font-medium !mr-2 hidden sm:flex">shubham45718@gmail.com</span>
+               <span className="text-sm font-medium !mr-2 hidden sm:flex">{sessionMail}</span>
             </button>
 
             <button
